@@ -6,7 +6,7 @@
 
 /**
  *
- * @author Jawesome
+ * @author KaiHonu
  */
 public class SelectionController {
 
@@ -30,8 +30,9 @@ public class SelectionController {
          * is updated.
          *
          *
-         * updateSummary();
+         * 
          */
+        updateSummary();
     }
 
   
@@ -52,6 +53,7 @@ public class SelectionController {
          *
          * updateSummary();
          */
+        updateSummary();
     }
 
 
@@ -63,6 +65,32 @@ public class SelectionController {
         int nights = ui.getNights();
 
         // YOUR CODE HERE
+        //room price based on selection
+        double roomPrice = 0;
+        
+        if (room != null) {
+            if (room.equalsIgnoreCase("Standard Room")) {
+                roomPrice = 1500;
+            } else if (room.equalsIgnoreCase("Deluxe Room")) {
+                roomPrice = 2500;
+            } else if (room.equalsIgnoreCase("Suite")) {
+                roomPrice = 4000;
+            }
+        }
+
+        //Calculates the total cost
+        double total = roomPrice * nights;
+
+        //Format the total as PHP currency
+        String totalText = String.format("PHP %.2f", total);
+
+        // 4. Send the result back to the UI
+        ui.updateSummary(
+            room,
+            pax,
+            String.valueOf(nights),
+            totalText
+        );
         /*
          *
          * 1. Determine the room price.
