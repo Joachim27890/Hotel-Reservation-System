@@ -18,8 +18,7 @@ public class CancelTimer {
     private HotelReservationUI ui;
 
     private Timer timer;
-
-    private int countdown = 3;
+    private int countdown = 10;
 
     public CancelTimer(HotelReservationUI ui) {
         this.ui = ui;
@@ -30,179 +29,157 @@ public class CancelTimer {
     public void startCountdown() {
 
         // YOUR CODE HERE
+
         /*
-         * Instructions:
+         * The cancellation grace period is 10 seconds.
          *
-         * 1. Stop any previous timer.
+         * 1. Stop any existing timer first.
          *
-         *    stopTimer();
+         * 2. Reset countdown to 10.
          *
-         * 2. Reset countdown to 3.
+         * 3. Change the CANCEL button text to:
          *
-         * 3. Change the button text:
+         *      "UNDO CANCELLATION"
          *
-         *    ui.setCancelButtonText(
-         *        "UNDO CANCELLATION"
-         *    );
+         * 4. Change the timer label to:
          *
-         * 4. Display:
-         *
-         *    "Cancellation Timer: 3"
+         *      "Cancellation Timer: 10"
          *
          * 5. Create a Swing Timer that runs every
-         *    1000 milliseconds.
+         *    1000 milliseconds (1 second).
          *
-         *    Hint:
+         * 6. The Timer's ActionListener should call:
          *
-         *    timer = new Timer(
-         *        1000,
-         *        new ActionListener() {
+         *      timerTick();
          *
-         *            @Override
-         *            public void actionPerformed(
-         *                ActionEvent e
-         *            ) {
-         *
-         *                timerTick();
-         *            }
-         *        }
-         *    );
-         *
-         * 6. Start the timer.
+         * 7. Start the timer.
          */
     }
 
-    
+
 
     public void stopTimer() {
 
         // YOUR CODE HERE
+
         /*
-         * Instructions:
-         *
-         * 1. Check if timer is not null.
-         *
-         * 2. Check if timer is running.
-         *
-         * 3. If running, stop it.
+         * If timer is not null AND the timer is running,
+         * stop it.
          */
     }
 
-    
+   
     public boolean isRunning() {
 
         // YOUR CODE HERE
+
         /*
-         * Instructions:
+         * Return true if:
          *
-         * Return true if the timer exists and is running.
+         *      timer != null
+         *      AND
+         *      timer.isRunning()
          *
-         *
-         * return timer != null && timer.isRunning();
+         * Otherwise return false.
          */
 
         return false;
     }
 
-  
-
+    
     public void undoCancellation() {
 
         // YOUR CODE HERE
+
         /*
-         * Instructions:
-         *
          * This method is called when the user clicks
          * "UNDO CANCELLATION".
          *
          * 1. Stop the timer.
          *
-         * 2. Reset countdown to 3.
+         * 2. Reset countdown back to 10.
          *
-         * 3. Change the button back to:
+         * 3. Change the button text back to:
          *
-         *    "CANCEL"
+         *      "CANCEL"
          *
          * 4. Change the timer label back to:
          *
-         *    "Cancellation Timer: Not started"
+         *      "Cancellation Timer: Not started"
          *
-         * 5. The reservation MUST remain active.
+         * IMPORTANT:
          *
-         * Do NOT call:
+         * Do NOT cancel the reservation here.
          *
-         * reservationCancelled()
+         * The reservation should remain active.
+         */
+    }
+
+
+    public void reset() {
+
+        // YOUR CODE HERE
+
+        /*
+         * This method is used when CLEAR is pressed.
+         *
+         * 1. Stop the timer.
+         *
+         * 2. Reset countdown back to 10.
+         *
+         * 3. Change the button text back to:
+         *
+         *      "CANCEL"
+         *
+         * 4. Change the timer label back to:
+         *
+         *      "Cancellation Timer: Not started"
          */
     }
 
     
-    public void reset() {
-
-        // YOUR CODE HERE
-        /*
-         * Instructions:
-         *
-         * This is used when CLEAR is pressed.
-         *
-         * 1. Stop the timer.
-         * 2. Reset countdown to 3.
-         * 3. Set button text back to:
-         *
-         *    "CANCEL"
-         *
-         * 4. Set timer label back to:
-         *
-         *    "Cancellation Timer: Not started"
-         */
-    }
-
-    // =========================================================
-    // TIMER TICK
-    // =========================================================
-
     private void timerTick() {
 
         // YOUR CODE HERE
+
         /*
-         * Instructions:
-         *
          * This method runs every 1 second.
          *
-         * 1. Decrease countdown:
-         *
-         *    countdown--;
+         * 1. Decrease countdown by 1.
          *
          * 2. Update the timer label.
          *
-         * 3. Check if countdown has reached 0.
+         * Example:
          *
+         *      Cancellation Timer: 9
+         *      Cancellation Timer: 8
+         *      Cancellation Timer: 7
+         *      ...
          *
-         * If countdown > 0:
+         * 3. When countdown reaches 0:
          *
-         * Keep the timer running.
+         *      a. Stop the timer.
          *
+         *      b. Change the button text back to:
          *
-         * If countdown == 0:
+         *             "CANCEL"
          *
-         *      1. Stop the timer.
+         *      c. Change the timer label back to:
          *
-         *      2. Reset the button:
+         *             "Cancellation Timer: Not started"
          *
-         *         ui.setCancelButtonText("CANCEL");
+         *      d. Tell ReservationController that the
+         *         cancellation is now FINAL by calling:
          *
-         *      3. Reset the timer display:
+         *             ui.getReservationController()
+         *                 .reservationCancelled();
          *
-         *         "Cancellation Timer: Not started"
+         * IMPORTANT:
          *
-         *      4. Tell ReservationController that
-         *         cancellation is COMPLETE:
+         * This method is the ONLY place where the timer
+         * confirms that the cancellation period has ended.
          *
-         *         ui.getReservationController()
-         *             .reservationCancelled();
-         *
-         *
-         * This is the ONLY point where the reservation
-         * should actually become cancelled.
+         * Do NOT directly change reservationMade here.
          */
     }
 }
