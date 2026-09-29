@@ -96,9 +96,9 @@ public class HotelReservationUI extends JFrame {
                     + "</p>"
                     + "<h3>Room Rates</h3>"
                     + "<p>"
-                    + "Standard Room: ₱1,500/night<br>"
-                    + "Deluxe Room: ₱2,500/night<br>"
-                    + "Suite: ₱4,000/night"
+                    + "Standard Room — ₱1,500/night<br>"
+                    + "Deluxe Room — ₱2,500/night<br>"
+                    + "Suite — ₱4,000/night"
                     + "</p>"
                     + "</div>"
                     + "</html>",
@@ -251,6 +251,7 @@ public class HotelReservationUI extends JFrame {
         cancelButton.setBackground(RED);
         cancelButton.setForeground(Color.WHITE);
 
+        cancelButton.setEnabled(false);
         newReservationButton.setEnabled(false);
 
         buttonPanel.add(reserveButton);
@@ -462,6 +463,11 @@ public class HotelReservationUI extends JFrame {
 
     public void setCancelButtonText(String text) {
         cancelButton.setText(text);
+    }
+
+    public void setReservationButtonsEnabled(boolean enabled) {
+        reserveButton.setEnabled(enabled);
+        checkInButton.setEnabled(enabled);
     }
 
     public JButton getCancelButton() {

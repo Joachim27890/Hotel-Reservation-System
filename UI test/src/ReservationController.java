@@ -44,6 +44,19 @@ public class ReservationController {
             return;
         }
 
+        if (reservationMade) {
+
+            JOptionPane.showMessageDialog(
+                ui,
+                "There is already an active reservation.\n"
+                + "Please use NEW RESERVATION to create another one.",
+                "Reservation Exists",
+                JOptionPane.WARNING_MESSAGE
+            );
+
+            return;
+        }
+
         savedGuestName = guestName;
         savedRoom = ui.getSelectedRoom();
         savedPax = ui.getSelectedPax();
@@ -53,6 +66,7 @@ public class ReservationController {
         checkedIn = false;
         assignedRoom = 0;
 
+        ui.getCancelButton().setEnabled(true);
         ui.getNewReservationButton().setEnabled(true);
 
         ui.updateStatus("Reservation confirmed.");
@@ -96,6 +110,8 @@ public class ReservationController {
 
         checkedIn = true;
 
+        ui.getCancelButton().setEnabled(false);
+
         ui.updateStatus("Guest checked in.");
 
         JOptionPane.showMessageDialog(
@@ -122,15 +138,37 @@ public class ReservationController {
             return;
         }
 
+        if (checkedIn) {
+
+            JOptionPane.showMessageDialog(
+                ui,
+                "The guest has already checked in.\n"
+                + "A checked-in reservation cannot be cancelled.\n\n"
+                + "Please use NEW RESERVATION to create a new reservation.",
+                "Cancellation Unavailable",
+                JOptionPane.WARNING_MESSAGE
+            );
+
+            return;
+        }
+
         if (ui.getCancelTimer().isRunning()) {
 
             ui.getCancelTimer().undoCancellation();
 
+            ui.setReservationButtonsEnabled(true);
+            ui.getNewReservationButton().setEnabled(true);
+            ui.getCancelButton().setEnabled(true);
+            ui.setCancelButtonText("CANCEL");
             ui.updateStatus("Reservation active.");
 
             return;
         }
 
+        ui.setReservationButtonsEnabled(false);
+        ui.getNewReservationButton().setEnabled(false);
+        ui.setCancelButtonText("UNDO CANCELLATION");
+        ui.getCancelButton().setEnabled(true);
         ui.updateStatus("Cancellation pending...");
 
         ui.getCancelTimer().startCountdown();
@@ -154,7 +192,13 @@ public class ReservationController {
 
         ui.clearSummary();
 
+        ui.setReservationButtonsEnabled(true);
+        ui.getCancelButton().setEnabled(false);
         ui.getNewReservationButton().setEnabled(false);
+        ui.setCancelButtonText("CANCEL");
+
+        ui.getCancellationTimerLabel()
+            .setText("Cancellation Timer: Not started");
 
         ui.updateStatus("Reservation cancelled.");
 
@@ -204,7 +248,8 @@ public class ReservationController {
             .setText("Cancellation Timer: Not started");
 
         ui.setCancelButtonText("CANCEL");
-
+        ui.setReservationButtonsEnabled(true);
+        ui.getCancelButton().setEnabled(false);
         ui.getNewReservationButton().setEnabled(false);
 
         ui.updateStatus("Ready for new reservation.");
