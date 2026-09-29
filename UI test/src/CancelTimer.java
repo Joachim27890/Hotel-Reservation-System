@@ -6,7 +6,7 @@
 
 /**
  *
- * @author Jawesome
+ * @author T'Roy
  */
 
  import javax.swing.Timer;
@@ -29,6 +29,24 @@ public class CancelTimer {
     public void startCountdown() {
 
         // YOUR CODE HERE
+        stopTimer();
+
+        countdown = 10;
+
+        ui.setCancelButtonText("UNDO CANCELLATION");
+
+        ui.getCancellationTimerLabel()
+                .setText("Cancellation Timer: 10");
+
+        timer = new Timer(1000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timerTick();
+            }
+        });
+
+        timer.start();
 
         /*
          * The cancellation grace period is 10 seconds.
@@ -61,6 +79,9 @@ public class CancelTimer {
     public void stopTimer() {
 
         // YOUR CODE HERE
+        if (timer != null && timer.isRunning()) {
+            timer.stop();
+        }
 
         /*
          * If timer is not null AND the timer is running,
@@ -83,13 +104,21 @@ public class CancelTimer {
          * Otherwise return false.
          */
 
-        return false;
+        return timer != null && timer.isRunning();
     }
 
     
     public void undoCancellation() {
 
         // YOUR CODE HERE
+        stopTimer();
+
+        countdown = 10;
+
+        ui.setCancelButtonText("CANCEL");
+
+        ui.getCancellationTimerLabel()
+                .setText("Cancellation Timer: Not started");
 
         /*
          * This method is called when the user clicks
@@ -119,6 +148,14 @@ public class CancelTimer {
     public void reset() {
 
         // YOUR CODE HERE
+        stopTimer();
+
+        countdown = 10;
+
+        ui.setCancelButtonText("CANCEL");
+
+        ui.getCancellationTimerLabel()
+                .setText("Cancellation Timer: Not started");
 
         /*
          * This method is used when CLEAR is pressed.
@@ -141,6 +178,23 @@ public class CancelTimer {
     private void timerTick() {
 
         // YOUR CODE HERE
+        countdown--;
+
+        ui.getCancellationTimerLabel()
+                .setText("Cancellation Timer: " + countdown);
+
+        if (countdown <= 0) {
+
+            stopTimer();
+
+            ui.setCancelButtonText("CANCEL");
+
+            ui.getCancellationTimerLabel()
+                    .setText("Cancellation Timer: Not started");
+
+            ui.getReservationController()
+                    .reservationCancelled();
+        }
 
         /*
          * This method runs every 1 second.
