@@ -44,10 +44,15 @@ public class HotelReservationUI extends JFrame {
     private JButton newReservationButton;
 
     public HotelReservationUI() {
+
         setTitle("Sunrise Hotel");
+
         setSize(850, 600);
+
         setLocationRelativeTo(null);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         getContentPane().setBackground(LIGHT_BG);
 
         reservationController = new ReservationController(this);
@@ -324,7 +329,6 @@ public class HotelReservationUI extends JFrame {
 
             @Override
             public void menuSelected(MenuEvent e) {
-                updateStatus("Reservation menu opened.");
             }
 
             @Override
@@ -340,7 +344,6 @@ public class HotelReservationUI extends JFrame {
 
             @Override
             public void menuSelected(MenuEvent e) {
-                updateStatus("Help menu opened.");
             }
 
             @Override
