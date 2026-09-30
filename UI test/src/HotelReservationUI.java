@@ -44,7 +44,7 @@ public class HotelReservationUI extends JFrame {
     private JButton newReservationButton;
 
     public HotelReservationUI() {
-        setTitle("Sunrise Hotel - Reservation & Check-In System");
+        setTitle("Sunrise Hotel");
         setSize(850, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +69,7 @@ public class HotelReservationUI extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel subtitleLabel = new JLabel("Reservation & Check-In System");
+        JLabel subtitleLabel = new JLabel("Reservation & Check-In");
         subtitleLabel.setForeground(Color.WHITE);
         subtitleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         subtitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -308,7 +308,11 @@ public class HotelReservationUI extends JFrame {
         JMenuItem viewReservationItem =
             new JMenuItem("View Reservation");
 
+        JMenuItem exportReceiptItem =
+            new JMenuItem("Export Receipt");
+
         reservationMenu.add(viewReservationItem);
+        reservationMenu.add(exportReceiptItem);
 
         JMenu helpMenu = new JMenu("Help");
 
@@ -363,6 +367,30 @@ public class HotelReservationUI extends JFrame {
                 + "Nights: " + nights,
                 "Current Reservation",
                 JOptionPane.INFORMATION_MESSAGE
+            );
+        });
+
+        exportReceiptItem.addActionListener(e -> {
+
+            if (!reservationController.isReservationMade()) {
+
+                JOptionPane.showMessageDialog(
+                    this,
+                    "There is no active reservation to export.",
+                    "Export Receipt",
+                    JOptionPane.WARNING_MESSAGE
+                );
+
+                return;
+            }
+
+            ReceiptExporter.exportReceipt(
+                getGuestName(),
+                getSelectedRoom(),
+                getSelectedPax(),
+                getNights(),
+                getTotalText(),
+                reservationController.getAssignedRoom()
             );
         });
 
@@ -431,6 +459,10 @@ public class HotelReservationUI extends JFrame {
 
     public int getNights() {
         return (Integer) nightsSpinner.getValue();
+    }
+
+    public String getTotalText() {
+        return totalSummaryLabel.getText().replace("TOTAL: ", "");
     }
 
     public void updateSummary(
