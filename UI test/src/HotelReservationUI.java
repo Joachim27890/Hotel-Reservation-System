@@ -101,9 +101,9 @@ public class HotelReservationUI extends JFrame {
                     + "</p>"
                     + "<h3>Room Rates</h3>"
                     + "<p>"
-                    + "Standard Room — ₱1,500/night<br>"
-                    + "Deluxe Room — ₱2,500/night<br>"
-                    + "Suite — ₱4,000/night"
+                    + "Standard Room: ₱1,500/night<br>"
+                    + "Deluxe Room: ₱2,500/night<br>"
+                    + "Suite: ₱4,000/night"
                     + "</p>"
                     + "</div>"
                     + "</html>",
@@ -401,25 +401,12 @@ public class HotelReservationUI extends JFrame {
 
             JOptionPane.showMessageDialog(
                 this,
-                "<html>"
-                + "<div style='width:380px;'>"
-                + "<h2>Sunrise Hotel</h2>"
-                + "<p><b>Affordable stays for everyone.</b></p>"
-                + "<p>"
-                + "Sunrise Hotel offers <b>room-based pricing</b>, meaning our rates "
-                + "are charged per room, per night rather than per guest. This allows "
-                + "guests to share a room without additional per-person charges, "
-                + "making our hotel a practical and budget-friendly option for "
-                + "individuals, families, and groups."
-                + "</p>"
-                + "<h3>Room Rates</h3>"
-                + "<p>"
-                + "Standard Room — ₱1,500/night<br>"
-                + "Deluxe Room — ₱2,500/night<br>"
-                + "Suite — ₱4,000/night"
-                + "</p>"
-                + "</div>"
-                + "</html>",
+                "Sunrise Hotel\n"
+                + "Reservation & Check-In System\n\n"
+                + "Version 1.0\n\n"
+                + "If you encounter any technical issues while using the system,\n"
+                + "please contact our support team.\n\n"
+                + "support@sunrisehotel.com",
                 "About Sunrise Hotel",
                 JOptionPane.INFORMATION_MESSAGE
             );
