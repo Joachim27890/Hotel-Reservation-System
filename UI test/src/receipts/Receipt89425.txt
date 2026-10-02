@@ -1,0 +1,25 @@
+========================================
+             SUNRISE HOTEL
+        RESERVATION RECEIPT
+========================================
+
+Guest Information
+----------------------------------------
+Lead Guest: joe
+PAX: 1 Person
+
+Reservation Details
+----------------------------------------
+Room Type: Standard Room
+Nights: 2
+Total: PHP 3000.00
+
+Check-In Information
+----------------------------------------
+Assigned Room: Room 201
+Key Card: Counter 3
+
+========================================
+Thank you for choosing Sunrise Hotel!
+Affordable stays for everyone.
+========================================

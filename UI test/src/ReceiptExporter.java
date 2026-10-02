@@ -24,12 +24,22 @@ public class ReceiptExporter {
         int assignedRoom
     ) {
 
+        if (assignedRoom <= 0) {
+            JOptionPane.showMessageDialog(
+                null,
+                "You can only export a receipt after the guest has checked in.",
+                "Export Receipt",
+                JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
         int randomNumber = 10000 + (int)(Math.random() * 90000);
-        String fileName = "receipts/Receipt" + randomNumber + ".txt";
-        
+        String fileName = "UI test/src/receipts/Receipt" + randomNumber + ".txt";
+
         // Generates a unique receipt filename, prepares the receipt content
         // This also saves it as a new text file in the receipts folder.
-        
+
         String receipt =
             "========================================\n" +
             "             SUNRISE HOTEL\n" +
@@ -56,19 +66,24 @@ public class ReceiptExporter {
             "Thank you for choosing Sunrise Hotel!\n" +
             "Affordable stays for everyone.\n" +
             "========================================\n";
+
         try {
             FileWriter writer = new FileWriter(fileName);
             writer.write(receipt);
             writer.close();
 
-            JOptionPane.showMessageDialog(null, "Receipt exported successfully!");
-        }catch (IOException e) 
-        {
-            JOptionPane.showMessageDialog(null, "Error exporting receipt: " + e.getMessage(),
-            "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                null,
+                "Receipt exported successfully!"
+            );
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(
+                null,
+                "Error exporting receipt: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 }
-
-
-
