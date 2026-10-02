@@ -56,23 +56,19 @@ public class ReceiptExporter {
             "Thank you for choosing Sunrise Hotel!\n" +
             "Affordable stays for everyone.\n" +
             "========================================\n";
+        try {
+            FileWriter writer = new FileWriter(fileName);
+            writer.write(receipt);
+            writer.close();
 
-        // YOUR CODE HERE
-        // To do:
-        //
-        // 1. Use FileWriter to create the file using "fileName".
-        //
-        // 2. Write the "receipt" String into the file.
-        //
-        // 3. Close the FileWriter after writing.
-        //
-        // 4. Use try-catch to handle IOException.
-        //
-        // 5. If successful, show a JOptionPane message likee:
-        //
-        //    "Receipt exported successfully!"
-        //
-        // 6. If an IOException occurs, show an error JOptionPane.
+            JOptionPane.showMessageDialog(null, "Receipt exported successfully!");
+        }catch (IOException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error exporting receipt: " + e.getMessage(),
+            "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
+
+
 
