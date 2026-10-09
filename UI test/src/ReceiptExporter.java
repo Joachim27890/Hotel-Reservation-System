@@ -35,7 +35,7 @@ public class ReceiptExporter {
         }
 
         int randomNumber = 10000 + (int)(Math.random() * 90000);
-        String fileName = "UI test/src/receipts/Receipt" + randomNumber + ".txt";
+        String fileName = "receipts/Receipt" + randomNumber + ".txt";
 
         // Generates a unique receipt filename, prepares the receipt content
         // This also saves it as a new text file in the receipts folder.
